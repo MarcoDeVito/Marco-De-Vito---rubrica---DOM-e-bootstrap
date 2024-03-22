@@ -73,9 +73,10 @@ let rubrica = {
 
     },
     'deleteContact': function (nameContact) {
+        
         // let = this.contacts.indexOf(nameContact);
         let i = this.contacts.map(contact => contact.name.toLowerCase()).indexOf(nameContact.toLowerCase())
-
+       
         // console.log(mapped);
         if (i !=-1) {
             this.contacts.splice(i, 1)
@@ -92,7 +93,8 @@ let rubrica = {
     'editContact': function (nameContact,editnumber) {
         // let = this.contacts.indexOf(nameContact);
         let i
-        
+        if(nameContact!=""&&editnumber!=""){
+
         if(btnRadioName.checked){
          i = this.contacts.map(contact => contact.name.toLowerCase()).indexOf(nameContact.toLowerCase())
         }
@@ -101,7 +103,9 @@ let rubrica = {
             i = this.contacts.map(contact => contact.number).indexOf(editnumber)
             console.log(`sono qua`);
         }
-
+    }else {
+        i=-1;
+    }
 
         // console.log(mapped);
         if (i !=-1) {
@@ -134,10 +138,10 @@ btnAdd.addEventListener('click', () => {
 
 })
 
-// btnDelete.addEventListener('click', () => {
-//     rubrica.deleteContact(removeName.value);
-//     rubrica.createContacts();
-// })
+btnDelete.addEventListener('click', () => {
+    rubrica.deleteContact(removeName.value);
+    rubrica.createContacts();
+})
 
 btnEdit.addEventListener('click', () => {
     rubrica.editContact(editName.value, editNumber.value);
